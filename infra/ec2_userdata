@@ -1,0 +1,77 @@
+#!/bin/bash
+# Update package lists
+sudo apt update
+
+# Install Nginx
+sudo apt install -y nginx
+
+# Install Node.js and npm
+sudo apt install -y nodejs
+sudo apt install -y npm
+
+# Install Git
+sudo apt install -y git
+
+# Config the rever proxy
+cd /etc/nginx/sites-available/
+
+content="server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host \$host;
+        try_files \$uri \$uri/ =404;
+    }
+}"
+
+# Agregar o reemplazar el contenido en el archivo "default"
+echo "$content" | sudo tee /etc/nginx/sites-available/default >/dev/null
+
+cd ~
+
+# Clone the project
+git clone https://github.com/adavidarevalo/Nest-default-app
+
+# Navigate into the project directory
+cd Nest-default-app
+
+# Install project dependencies
+npm install
+
+# Build the project and generate the dist
+npm run build
+
+# Return the root project
+cd ..
+
+# Define the destination directory for Nginx
+nginx_destination="/var/www/html"
+
+# Remove existing files in the Nginx directory
+sudo rm -rf $nginx_destination/*
+
+# Copy the project files to Nginx directory
+sudo cp -r Nest-default-app/* $nginx_destination
+
+# Enter the html
+cd /var/www/html
+
+# Start Nginx
+sudo systemctl start nginx
+
+# Enable Nginx to start on boot
+sudo systemctl enable nginx
+
+# Restart nginx
+sudo systemctl restart nginx
+
+# start the project
+npm run start:prod
