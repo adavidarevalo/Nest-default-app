@@ -12,6 +12,12 @@ sudo apt install -y npm
 # Install Git
 sudo apt install -y git
 
+# Config CodeDeploy
+sudo apt-get install -y ruby
+wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+
 # Config the rever proxy
 cd /etc/nginx/sites-available/
 
