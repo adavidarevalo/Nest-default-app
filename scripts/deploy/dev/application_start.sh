@@ -1,4 +1,4 @@
 #!/bin/bash
 
-npm run start
+sudo npm start
 echo "Application start"
