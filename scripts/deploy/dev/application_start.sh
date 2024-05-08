@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo pm2 start dist/main
+sudo pm2 start dist/main.js
