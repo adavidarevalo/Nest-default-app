@@ -12,6 +12,9 @@ sudo apt install -y npm
 # Install Git
 sudo apt install -y git
 
+sudo npm install pm2@latest -g
+
+
 # Config CodeDeploy
 sudo apt-get install -y ruby
 wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
@@ -76,8 +79,8 @@ sudo systemctl start nginx
 # Enable Nginx to start on boot
 sudo systemctl enable nginx
 
+# start the project
+pm2 start dist/main.js
+
 # Restart nginx
 sudo systemctl restart nginx
-
-# start the project
-npm run start:prod
