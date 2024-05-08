@@ -2,23 +2,5 @@ version: 0.0
 os: linux
 
 files:
-  - source: /target/Nest_app_build.war
+  - source: /
     destination: /var/www/html
-
-hooks:
-  BeforeInstall:
-    - location: scripts/deploy/dev/before_install.sh
-      timeout: 300
-      runas: root
-
-  AfterInstall:
-    - location: scripts/deploy/dev/after_install.sh
-      timeout: 300
-      runas: root
-
-  ApplicationStart:
-    - location: scripts/deploy/dev/application_start.sh
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    - location: scripts/deploy/dev/application_stop.sh
