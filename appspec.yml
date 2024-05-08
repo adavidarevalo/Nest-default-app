@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/html
+
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: ec2-user 
+
+hooks:
+  BeforeInstall:
+      timeout: 300
+      commands: 
+        -  sudo fuser -k 3000/tcp
+
+  AfterInstall:
+      timeout: 300 
+
+  ApplicationStart:
+      timeout: 300
+      commands:
+       - npm start
