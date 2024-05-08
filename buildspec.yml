@@ -14,10 +14,11 @@ phases:
   build:
     commands:
       - nest build
-      - cp -r script dist/
-      - cp -r appspec.yml dist/
 
 artifacts:
   files:
     - 'dist/**/*'
+    - 'script'
+    - 'appspec.yml'
+
     
