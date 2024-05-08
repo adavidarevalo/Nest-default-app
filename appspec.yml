@@ -5,21 +5,15 @@ files:
   - source: /
     destination: /var/www/html
 
-permissions:
-  - object: /var/www/html
-    pattern: "**"
-    owner: ec2-user 
-
 hooks:
   BeforeInstall:
+    - location: scripts/deploy/dev/before_install.sh
       timeout: 300
-      commands: 
-        -  sudo fuser -k 3000/tcp
 
   AfterInstall:
-      timeout: 300 
+    - location: scripts/deploy/dev/after_install.sh
+      timeout: 300
 
   ApplicationStart:
+    - location: scripts/deploy/dev/application_start.sh
       timeout: 300
-      commands:
-       - npm start
