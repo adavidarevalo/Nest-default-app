@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo npm start
+sudo node dist/main
 echo "Application start"
