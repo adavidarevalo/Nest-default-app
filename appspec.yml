@@ -2,17 +2,19 @@ version: 0.0
 os: linux
 
 files:
-  - source: /dist
-    destination: /var/www/html/dist
+  - source: /
+    destination: /var/www/html
 
 hooks:
   ApplicationStart:
+    - location: scripts/deploy/dev/application_start.sh
       timeout: 300
       runas: root
       command:
         - sudo npm start
 
   ApplicationStop:
+    - location: scripts/deploy/dev/application_stop.sh
       timeout: 300
       runas: root
       command:
