@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pm2 stop all 
+sudo npx kill-port 3000

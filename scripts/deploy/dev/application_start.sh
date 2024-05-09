@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo pm2 start dist/main.js
+sudo node dist/main 

@@ -14,11 +14,7 @@ phases:
   build:
     commands:
       - nest build
-      - cp -r scripts dist/.
-      - cp -r appspec.yml dist/.
 
 artifacts:
   files:
-    - 'dist/**/*'
-
-    
+    - '**/*'
