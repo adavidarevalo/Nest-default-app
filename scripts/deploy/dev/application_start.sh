@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo node dist/main 
+sudo node dist/src/main.js
